@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .grid{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .grid .grid-item{
+            width: 19%;
+            height: 200px;
+            /* background-color: gray; */
+
+            /* margin: ; */
+            padding: 10px;
+        }
+
+        .grid .one .sub{
+            height: 100%;
+            background-color:red ;
+        }
+    
+        .grid .two{
+            background-color:green ;
+        }
+        .grid .three{
+            background-color:yellow ;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="head">
+        <a href="#" data-filter="*">All</a>
+        <a href="#" data-filter=".one">One</a>
+        <a href="#" data-filter=".two">Two</a>
+        <a href="#" data-filter=".three">Three</a>
+        <a href="#" data-filter=".one, .three">One & Three</a>
+    </div>
+
+    <div class="grid">
+        <div class="grid-item one" >
+            <div class="sub">
+                Element of One
+            </div>
+        </div>
+        <div class="grid-item two" >Element of two</div>
+        <div class="grid-item one" >
+            <div class="sub">
+                Element of One
+            </div>
+        </div>
+        <div class="grid-item two" >Element of two</div>
+        <div class="grid-item one" >
+            <div class="sub">
+                Element of One
+            </div>
+        </div>
+        <div class="grid-item one" >
+            <div class="sub">
+                Element of One
+            </div>
+        </div>
+        <div class="grid-item two" >Element of two</div>
+        <div class="grid-item two" >Element of two</div>
+        <div class="grid-item three" >Element of three</div>
+        <div class="grid-item two" >Element of two</div>
+        <div class="grid-item three" >Element of three</div>
+        <div class="grid-item one" >
+            <div class="sub">
+                Element of One
+            </div>
+        </div>
+        <div class="grid-item three" >Element of three</div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script>
+
+        var $grid = $('.grid');
+        
+        $grid.isotope({
+            itemSelector: '.grid-item',
+            layoutMode: 'fitRows',
+            filter: '.three',
+
+            // filter: filterValue 
+        });
+
+        $('.head').on('click', 'a', function () {
+            var filterValue = $(this).attr('data-filter');
+            // console.log(filterValue);
+            $grid.isotope({ 
+                filter: filterValue 
+            });
+        });
+    </script>
+</body>
+</html>
